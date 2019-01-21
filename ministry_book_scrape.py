@@ -95,3 +95,5 @@ for bookNum in range(len(bookname_links)):
     # Add the rest of the html file text to close it off (completes the html file)
     text_file = open(saveFile, 'a')
     text_file.write("</body></html>")
+
+# Test comment to see if git is actually working properly
