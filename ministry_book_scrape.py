@@ -1,5 +1,5 @@
 from selenium import webdriver
-import webbrowser, os, requests, bs4
+import webbrowser, os, requests, bs4, pdfkit
 from selenium.common.exceptions import NoSuchElementException # Allows to you raise exception if any element you are looking for doesn't exist
 
 
@@ -34,7 +34,7 @@ for link in links:
 
 
 # Saving the html files in the Documents folder
-    os.chdir('/Users/zane/Documents/ministry_book_texts')
+os.chdir('/Users/zane/Documents/ministry_book_texts')
 
 # loops through the process for every single book on the bookname_links list
 for bookNum in range(len(bookname_links)):
@@ -58,7 +58,8 @@ for bookNum in range(len(bookname_links)):
     <body>
     """
 
-    saveFile = './ministry_text_%s.html' % (bookname_links[bookNum])
+    savePrefix = './ministry_text_%s' % (bookname_links[bookNum])
+    saveFile = savePrefix + '.html'
     text_file = open(saveFile, 'w')
     text_file.write(html_string)
     text_file.close()
@@ -97,4 +98,11 @@ for bookNum in range(len(bookname_links)):
     # Add the rest of the html file text to close it off (completes the html file)
     text_file = open(saveFile, 'a')
     text_file.write("</body></html>")
+
+
+
+    # Converting html file into pdf file
+    convertFile = savePrefix + '.pdf'
+    pdfkit.from_file(saveFile, convertFile)
+
 
