@@ -32,6 +32,10 @@ links = list_div.find_elements_by_partial_link_text('Life-Study')  # Get all of 
 for link in links:
     bookname_links.append(link.text)
 
+
+# Saving the html files in the Documents folder
+    os.chdir('/Users/zane/Documents/ministry_book_texts')
+
 # loops through the process for every single book on the bookname_links list
 for bookNum in range(len(bookname_links)):
     browser.get(homePage)
@@ -53,9 +57,7 @@ for bookNum in range(len(bookname_links)):
     </head>
     <body>
     """
-    # Saving the html files in the Documents folder
-    os.mkdir('/Users/zane/Documents/ministry_book_texts')
-    os.chdir('/Users/zane/Documents/ministry_book_texts')
+
     saveFile = './ministry_text_%s.html' % (bookname_links[bookNum])
     text_file = open(saveFile, 'w')
     text_file.write(html_string)
@@ -96,4 +98,3 @@ for bookNum in range(len(bookname_links)):
     text_file = open(saveFile, 'a')
     text_file.write("</body></html>")
 
-# Test comment to see if git is actually working properly
