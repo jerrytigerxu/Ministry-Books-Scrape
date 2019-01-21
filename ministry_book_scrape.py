@@ -99,10 +99,11 @@ for bookNum in range(len(bookname_links)):
     text_file = open(saveFile, 'a')
     text_file.write("</body></html>")
 
-
-
     # Converting html file into pdf file
     convertFile = savePrefix + '.pdf'
     pdfkit.from_file(saveFile, convertFile)
+
+    # Delete the html file, leaving behind only the pdfs
+    os.remove(saveFile)
 
 
