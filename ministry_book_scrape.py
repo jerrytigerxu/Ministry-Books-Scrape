@@ -75,6 +75,7 @@ for bookNum in range(len(bookname_links)):
     # Stop the while loop when there is no next_chapter_link or next_section_link left in the book
 
     # TODO: Deal with issue where browser keeps trying to click empty link button
+    # TODO: Look for the class that says 'button radius disabled' on the next section button -> when the book ends
     while True:
         if not (link_exists(next_chapter_link) or link_exists(next_section_link)):
             print('There is no button called "next chapter" or "next section"')
