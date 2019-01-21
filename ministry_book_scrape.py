@@ -72,9 +72,13 @@ for bookNum in range(len(bookname_links)):
     else: # Corresponds with first link - Going to particular book
         print('Was not able to find a link with that name.')
 
-    for clickNum in range(1): # Scrape from any number of pages
+    # Stop the while loop when there is no next_chapter_link or next_section_link left in the book
+
+    # TODO: Deal with issue where browser keeps trying to click empty link button
+    while True:
         if not (link_exists(next_chapter_link) or link_exists(next_section_link)):
             print('There is no button called "next chapter" or "next section"')
+            break
         else:
             if link_exists(next_chapter_link):
                 link = browser.find_element_by_partial_link_text(next_chapter_link)
