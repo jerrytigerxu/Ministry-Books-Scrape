@@ -13,6 +13,18 @@ def link_exists(search_text): # based on browser.find_element_by_partial_link_te
         elementDisplayed = False
     return elementDisplayed
 
+# Function that checks if there are no more sections in the book (allowing the program to move on to the next book)
+def no_more_sections():
+    noSections = False
+    try:
+        browser.find_element_by_css_selector("a[class='button radius disabled']")
+        if browser.find_element_by_css_selector("a[class='button radius disabled']").text == 'prev section':
+            noSections = False
+        else:
+            noSections = True
+    except NoSuchElementException:
+        noSections = False
+    return noSections
 
 browser = webdriver.Chrome()  # Opens to the chrome browser
 next_chapter_link = 'next chapter'
