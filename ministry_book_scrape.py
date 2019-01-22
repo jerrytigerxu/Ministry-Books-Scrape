@@ -26,6 +26,7 @@ def no_more_sections():
         noSections = False
     return noSections
 
+
 browser = webdriver.Chrome()  # Opens to the chrome browser
 next_chapter_link = 'next chapter'
 next_section_link = 'next section'
@@ -110,6 +111,8 @@ for bookNum in range(len(bookname_links)):
             text_file = open(saveFile, 'a')
             text_file.write(ministry_text)
             text_file.close()
+            if no_more_sections():
+                break
     browser.implicitly_wait(clickSpeed)
 
     # Add the rest of the html file text to close it off (completes the html file)
