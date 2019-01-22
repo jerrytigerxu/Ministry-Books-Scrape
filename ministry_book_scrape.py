@@ -1,6 +1,6 @@
 from selenium import webdriver
 import webbrowser, os, requests, bs4, pdfkit
-from selenium.common.exceptions import NoSuchElementException # Allows to you raise exception if any element you are looking for doesn't exist
+from selenium.common.exceptions import NoSuchElementException
 
 
 # Create a function that checks if an element you are searching for exists (focus on searching for link by text)
@@ -12,6 +12,7 @@ def link_exists(search_text): # based on browser.find_element_by_partial_link_te
     except NoSuchElementException:
         elementDisplayed = False
     return elementDisplayed
+
 
 # Function that checks if there are no more sections in the book (allowing the program to move on to the next book)
 def no_more_sections():
@@ -30,7 +31,7 @@ def no_more_sections():
 browser = webdriver.Chrome()  # Opens to the chrome browser
 next_chapter_link = 'next chapter'
 next_section_link = 'next section'
-clickSpeed = 0.05  # Amount of time for browser to wait before clicking link
+clickSpeed = 0.03  # Amount of time for browser to wait before clicking link
 homePage = 'https://www.ministrybooks.org/life-studies.cfm'
 # First going to the "home page" -> in this case it is the life studies page
 bookname_links = []
@@ -87,8 +88,6 @@ for bookNum in range(len(bookname_links)):
 
     # Stop the while loop when there is no next_chapter_link or next_section_link left in the book
 
-    # TODO: Deal with issue where browser keeps trying to click empty link button
-    # TODO: Look for the class that says 'button radius disabled' on the next section button -> when the book ends
     while True:
         if not (link_exists(next_chapter_link) or link_exists(next_section_link)):
             print('There is no button called "next chapter" or "next section"')
