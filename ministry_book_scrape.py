@@ -2,6 +2,8 @@ from selenium import webdriver
 import webbrowser, os, requests, bs4, pdfkit
 from selenium.common.exceptions import NoSuchElementException
 
+# Make sure to install wkhtmltopdf
+
 
 # Create a function that checks if an element you are searching for exists (focus on searching for link by text)
 def link_exists(search_text): # based on browser.find_element_by_partial_link_text() method
@@ -28,7 +30,16 @@ def no_more_sections():
     return noSections
 
 
-browser = webdriver.Chrome()  # Opens to the chrome browser
+executable_path = '/mnt/c/Users/jtx2/Downloads/chromedriver.exe' # This depends on your workflow
+
+
+browser = webdriver.Chrome(executable_path=executable_path)  # Opens to the chrome browser
+
+
+
+
+
+
 next_chapter_link = 'next chapter'
 next_section_link = 'next section'
 clickSpeed = 0.03  # Amount of time for browser to wait before clicking link
@@ -40,7 +51,7 @@ browser.get(homePage)  # This is the starting point
 browser.implicitly_wait(clickSpeed)
 
 list_div = browser.find_element_by_class_name('large-10')  # div element where all of the booknames are located
-links = list_div.find_elements_by_partial_link_text('Life-Study')  # Get all of the links from the div that have the words 'Life-Study'
+links = list_div.find_elements_by_partial_link_text('Life-Study of Revelation')  # Get all of the links from the div that have the words 'Life-Study'
 
 # the browser finds all of the book names based on the links and appends them to the bookname_links list
 for link in links:
@@ -48,7 +59,7 @@ for link in links:
 
 
 # Saving the html files in the Documents folder
-os.chdir('/Users/zane/Documents/ministry_book_texts')
+#os.chdir('/Users/zane/Documents/ministry_book_texts')
 
 # loops through the process for every single book on the bookname_links list
 for bookNum in range(len(bookname_links)):
@@ -61,7 +72,7 @@ for bookNum in range(len(bookname_links)):
     <head>
         <meta charset="UTF-8">
         <title>Title</title>
-    
+
         <style>
             body {
                 font-family: 'Times New Roman';
@@ -103,7 +114,7 @@ for bookNum in range(len(bookname_links)):
                 browser.implicitly_wait(clickSpeed)
             html = browser.page_source
             soup = bs4.BeautifulSoup(html, features="html.parser")
-            html = list(soup.children)[5]
+            html = list(soup.children)[0]
             body = list(html.children)[3]
             ministry_text_tag = (body.select('#ministry-text'))[0]
             ministry_text = str(ministry_text_tag)
@@ -124,5 +135,3 @@ for bookNum in range(len(bookname_links)):
 
     # Delete the html file, leaving behind only the pdfs
     os.remove(saveFile)
-
-
