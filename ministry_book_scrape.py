@@ -51,7 +51,7 @@ browser.get(homePage)  # This is the starting point
 browser.implicitly_wait(clickSpeed)
 
 list_div = browser.find_element_by_class_name('large-10')  # div element where all of the booknames are located
-links = list_div.find_elements_by_partial_link_text('Life-Study of Revelation')  # Get all of the links from the div that have the words 'Life-Study'
+links = list_div.find_elements_by_partial_link_text('Life-Study of Jeremiah & Lamentations')  # Get all of the links from the div that have the words 'Life-Study'
 
 # the browser finds all of the book names based on the links and appends them to the bookname_links list
 for link in links:
