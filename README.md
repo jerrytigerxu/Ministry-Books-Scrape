@@ -8,6 +8,9 @@ Behold the power of web scraping!
 
  - Download the necessary Selenium webdriver (chromedriver) and save to your Downloads folder
    - Make sure to edit the permissions on the chromedriver so it can be executed as a file
+ - Adjust the variables within the script file to target a specific book on ministrybooks.org
+ - Make sure you use pip or pip3 to install the necessary packages
+ - Run with `python [file.py]` or `python3 [file.py]`
 
 
 ## Important Note:
