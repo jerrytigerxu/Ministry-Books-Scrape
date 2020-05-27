@@ -30,12 +30,12 @@ def no_more_sections():
     return noSections
 
 
-executable_path = '/mnt/c/Users/jtx2/Downloads/chromedriver.exe' # This depends on your workflow
 
 
-browser = webdriver.Chrome(executable_path=executable_path)  # Opens to the chrome browser
 
+#browser = webdriver.Chrome(executable_path=executable_path)  # Opens to the chrome browser
 
+browser = webdriver.Chrome(executable_path='/home/jeretigerxu/Downloads/chromedriver')
 
 
 
