@@ -43,15 +43,15 @@ browser = webdriver.Chrome(executable_path='/home/jeretigerxu/Downloads/chromedr
 next_chapter_link = 'next chapter'
 next_section_link = 'next section'
 clickSpeed = 0.03  # Amount of time for browser to wait before clicking link
-homePage = 'https://www.ministrybooks.org/life-studies.cfm'
+homePage = 'https://www.ministrybooks.org/alphabetical.cfm?s=C'
 # First going to the "home page" -> in this case it is the life studies page
 bookname_links = []
 
 browser.get(homePage)  # This is the starting point
 browser.implicitly_wait(clickSpeed)
 
-list_div = browser.find_element_by_class_name('large-10')  # div element where all of the booknames are located
-links = list_div.find_elements_by_partial_link_text('Life-Study of Jeremiah & Lamentations')  # Get all of the links from the div that have the words 'Life-Study'
+#list_div = browser.find_element_by_class_name('large-10')  # div element where all of the booknames are located
+links = browser.find_elements_by_partial_link_text('Character')  # Get all of the links from the div that have the words 'Life-Study'
 
 # the browser finds all of the book names based on the links and appends them to the bookname_links list
 for link in links:
